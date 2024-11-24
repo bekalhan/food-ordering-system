@@ -1,0 +1,32 @@
+                                   Container (Spring boot)
+                                            |                                   Data Layer Adapter
+                                            |                                      (Secondary)
+                           -----------------|------------------------------------------ |
+                            |                      IP                      OP           |
+    UI                  API Layer       depends   ||    Domain Layer      ||  depends  || Data Layer
+Rest Client    --->   Primary Adapter  ---------> ||   Business Logic     ||<--------- ||  RDBMS
+                     (Rest Controllers)           || (Independent stable) ||           ||
+                                                                           |
+                                                                           | Data Layer Interface
+                                    ---------------------------------------| External Service port
+                                    |                            |              Messaging Port
+                                    |                            |
+                                    |                            |
+                                    ||  Messaging Component      |         ||    External Service
+                                    ||                           |---------||
+                                    ||                                     ||
+                                     |                                      |
+                                     |                                      |
+                             Messaging Adapter (KAFKA)          External Service Adapter
+                                   (Secondary)                          (Secondary)
+
+
+->Yukarıdaki resme bakarsan hepsi domain layer'a bağlı domain layer hepsinden bağımsız ve en stabil component.
+Bu bağımsızlığı sağlayanda Dependency Inversion.
+
+->Input portunun implentasyonu damain layer içerisinde yapılıyor.Input portunu kullananda API LAYER
+içerisinde de rest controller var.yani input portunu kullanan primary adapter o zaman rest controller
+burada bir primary adapter.
+
+->Output portlarının implementasyonu infrastructure componentlarında (Data Layer,Messaging,External serivce)
+'de yapılıyor ve biz bunlara secındary adapter diyoruz.Output portlarını kulllanan ise domain layer.

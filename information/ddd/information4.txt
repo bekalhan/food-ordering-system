@@ -1,0 +1,35 @@
+DDD (Domain Driven Design) -> temelde clean architecture ile mantık aynı iş mantığı domaini bağımsız
+hale getirmek.
+
+->Domain driven designda stratejik ve taktiksel patternlar kullanrak iş mantığının domainin modellenmesi
+yapılarak domainin mantığının daha kolay anlaşılması geliştirilmesi bakımının yapılması amaçlanıyor.
+Burada entity objeleri,aggregate root,value object,domain service,application service,domain event kavramları
+karışımıza çıkıyor.Farklı bounded contextler yani bağımsız iş modelleri oluşturdukları domain eventleri
+ile iletişime geçebiliyorlar.Bu açıdan bakıldığında eventlerden bahsettiğimiz için domain driven designın
+event driven'a mimarisine uyduğunu söyleyebiliriz.
+
+-> Clean architectureda entites ve use cases var iken domain driven design entitylere aggregate kavramı gelip
+(set of entities and aggregate root) ve use case karşılık olarak domain serviceler geliyor.EKstradan
+bir katman yukarıda application service katmanı geliyor.
+
+                    |-----------------------------------------------------------------------|
+                    |                   User Interfaces ||||  Infrastructure                |
+                    |                                  Tests                                |
+                    |       |---------------------------------------------------------      |
+                    |       |                                                        |      |
+                    |       |            Application Services                        |      |
+                    |       |     |---------------------------------------|          |      |
+                    |       |     |        Domain Services                |          |      |
+                    |       |     |      |-------------------------|      |          |      |
+                    |       |     |      |                         |      |          |      |
+                    |       |     |      |    Domain Model         |      |          |      |
+                    |       |     |      |                         |      |          |      |
+                    |       |     |      |-------------------------|      |          |      |
+                    |       |     |                                       |          |      |
+                    |       |     |---------------------------------------|          |      |
+                    |       |                                                        |      |
+                    |       |                                                        |      |
+                    |       |--------------------------------------------------------|      |
+                    |                                                                       |
+                    |                                                                       |
+                    |-----------------------------------------------------------------------|

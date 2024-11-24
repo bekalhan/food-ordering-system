@@ -1,0 +1,40 @@
+DDD (Domain Driven Desing) -> Yazılım geliştirmeden karmaşık iş problemleri çözmek için kullanılan
+bir yaklaşımdır.Amacı yazılımın iş dünyası  ile ortak dilde (Ubiquitous language) konuşmak ve iş
+gereksinimlerinin yazılama uygulanmasını direky yazılım mimarisine yansıtmaktır.
+
+ddd'nin prensipleri ikiye ayrılır strategic design ve tactical designi.
+
+1- Strategic Design
+
+1. Ubiquitous Language -> iş ekibi ve yazılım ekibinin aynı dili kullanmasıdır.Domain seviyesinle bulunan
+yapılar (class,entity,function,field vb) ortak isimlendirilmeli her iki taraf içinde anlaşılır olmalıdır.
+Örneğin proje ekibi olarak e-ticaret uygulamaızda müşterileri customer ürünleri product oalrak adlandırıyoruz
+projeden böyle olmasını istiyoruz
+
+2. Boundede Context -> Büyük bir domain daha küçük parçalara ayrılabilir.Her bounded context kendi
+içinde domain modeline ve diline sahiptir.Örneğin e-tciarette Sipariş yönetimi ve ödeme bounded contextleri
+oalbilir.
+
+2-Tactical Desing
+
+1- Aggregate/Aggregate root -> Nesneler kümeler halinde bir araya gelerek birlikte çalıştığı yapılar oluşturulur
+aggregate root dışarıdan nesne referansları ekleyebilmek için gloabl bir kimliğe sahip olur. root dışında
+diğer nesnelerin yerel kimlikleri olur.
+
+2- Entities -> iş alalnındaki nesneler entity olarak adlandırılır.
+
+3- value objects
+
+4- Repositories
+
+
+***özet****
+Aggregate -> mantıksal olarak bağlı olan entity grubu
+Aggregate root -> aggregate içindeki varlıkalra aggreagate root aracılığı işe erişilebilir.Herhangi
+bir değişiklik root üzerinden değiştirilir bu sayede veri bütünlüğü korunmuş olur.
+Entity -> Core domain obejct
+Value Objects -> value contexte getirir
+
+
+-----Layered Architecture-----
+information1.txt incele

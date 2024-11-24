@@ -1,0 +1,19 @@
+1.dependency inversion -> bağımlılıları ters çevrilmesidir.Bu prensibe göre yüksek seviye
+(business logic - domain layer) gibi bileşenler düşük seviyeli (database erişimi) bileşenlere
+doğrudan bağımlı olmamasıdır.
+
+-> Domain layer düşük seviyeli katmanlara (Data Layer) detaylarına bağlı kalmaz.
+-> Domain Layer yalnızca ihtiyaç duyduğu işlevleri tanımlayan "port" adı verilen interface'lere
+bağımlıdır.
+-> bu portların implemntasyonların ise Data Layer ve diğer external servislerde yer alır.
+
+2.Dependency Injection -> Uygulamanın ihtiyacı olan bağımlılıkların çalışma zamanında dışarıdan sağlama
+yöntemidir.
+
+-> Domain Layer bir bağımlılık kullanmak istediğinde doğrudan implentasyona değil interface'e başvurur (output port)
+-> Çalışma zamanında spring gibi bir framework gerekli interfacin uygun implemntasyonun inject eder.Bu
+injection run timeda gerçekleşir. bu sayede domain katmanı düşük seviyeli implementasyonlara bağımlı kalmaz.
+
+
+
+

@@ -17,12 +17,14 @@ volumes/
 .sts4-cache
 
 ### IntelliJ IDEA ###
+information
 .idea
 *.iws
 *.iml
 *.ipr
 
 ### NetBeans ###
+./information
 /nbproject/private/
 /nbbuild/
 /dist/

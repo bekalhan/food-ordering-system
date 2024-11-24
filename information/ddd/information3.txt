@@ -1,0 +1,13 @@
+Clean - Hexagonal Architecture - İş Mantığının kodlanması
+
+1.Entities -> Kritik iş kurallarını , modeller bulunur. Burada tüm sistemde geçerli olan genel kuralları
+kodlayabiliriz.
+
+2.Use Cases -> Uygulamaya özel iş mantığı kurallarıni tanımnlar.Entity objelerinde yer alan kuralların ne zaman
+nasıl çağırılşacağına belirleyen kurallar içerir.Use caseler uygulmanaın ne yaptığı ile ilgilenir.
+veri alıp işlemek gerekli kurallara göre bu verilekri düzenlemek ve diğer katmanlara iletmekten sorumludur.
+
+Product -> entity  CreateOrderUseCase -> bir use case
+product içine isPriceValid diye bir iş mantığı kuralı yazabiliriz bu aslında price'n 0 dan b
+büyük olup olmadığını kontrol eder.Bu bir useCase'n başarılı bir şekilde tamamlanması için olmazsa
+olmaz bir kuraldır ve bunu domain katmanında yapıyoruz.

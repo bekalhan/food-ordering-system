@@ -1,0 +1,7 @@
+1.order-domain -> ortada olan domain layer'ı ifade ediyor
+1.1.order-domain-core -> iş kurallarının olduğu entityler,valueobjectler,event tanımları.
+1.2.order-application-service -> input ve output portları
+order-application -> primary adapter dediğmiz rest api kısmını ifade ediyor.
+order-dataaccess -> veri katmanı
+order-messaging -> message componenti
+order-container -> spring boot componenti

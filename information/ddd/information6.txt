@@ -1,0 +1,15 @@
+2- Tactical Design
+
+2.1 - Aggregate / Aggreagete root -> Nesneler kümeler halinde bir araya gelerek birlikte çalıştığı yapılar oluşturulur
+aggregate root dışarıdan nesne referansları ekleyebilmek için gloabl bir kimliğe sahip olur. root dışında
+diğer nesnelerin yerel kimlikleri olur.
+
+2.2 - Entities
+
+2.3 - Value Object -> valueları context getiren kimlikleri olmayan yapılar
+
+2.4 - Repositories - Services
+
+2.5 - Domain Services
+
+2.6 - Factories

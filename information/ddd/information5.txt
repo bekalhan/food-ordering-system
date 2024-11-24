@@ -1,0 +1,51 @@
+
+1- Taktiksel tasarım (Tactical Design)
+2- Stratejik tasarım (Strategic Design)
+
+
+****Strategic Design*****
+->Stratejik Tasarım, DDD’nin daha üst düzeyde, sistemin genel mimarisini ve organizasyonunu ele alan kısmıdır.
+Sistemin yapı taşlarını, sınırlarını ve genel ilişkilerini tanımlamayı içerir. Bu sayede ekipler,
+karmaşık iş alanlarını daha net ve ölçeklenebilir bir şekilde düzenleyebilirler.
+
+
+1. Ubiquitous Language
+-> Geliştiriciler ve iş birimi uzmanları proje bpyunca aynı terminolojiyi kullanmasını sağlayarak
+yanlış anlaşılmanın önğne geçer
+
+
+2. Bounded Context
+-> Domain belirli bağlamlara ayrılır. Bu bağlamlar iş alanının farklı bölümlerini temsil eder ve her biri kendi
+içinde tutarlı çalışır.Amaç sistemin farklı bölümlerinin birbirinden bağımsız olarak yönetilmesidir.Ubiquitous
+language bounded context içinde kullanılır.
+
+E-Ticaret Sistemi Örneği
+Bounded Context'ler:
+Ürün Yönetimi (Product Management): Ürünlerin listelendiği, fiyatların belirlendiği ve stokların yönetildiği bounded context.
+Sipariş Yönetimi (Order Management): Müşterilerin sipariş verdiği, ödemelerin işlendiği ve siparişlerin takip edildiği bounded context.
+Müşteri Yönetimi (Customer Management): Müşterilerin profillerinin, adres bilgilerinin ve sipariş geçmişlerinin yönetildiği bounded context.
+Ubiquitous Language:
+Her bounded context kendi içinde farklı terimler kullanabilir. Örneğin:
+
+Ürün Yönetimi: “Ürün Kategorisi”, “Stok Miktarı”, “Ürün Fiyatı”, “Ürün Tanıtımı” gibi terimler kullanılır.
+Sipariş Yönetimi: “Sipariş”, “Ödeme Durumu”, “Kargo Bilgisi”, “Fatura” gibi terimler geçerli olabilir.
+Müşteri Yönetimi: “Müşteri Profili”, “Teslimat Adresi”, “Sadakat Puanı”, “Müşteri Notları” gibi terimler burada kullanılır.
+Bu durumda, Ürün Yönetimi bounded context'i içindeki “fiyat” terimi, sadece ürünlerin fiyatlandırılması anlamına gelirken, Sipariş Yönetimi bounded context'inde “fiyat” daha çok bir siparişin toplam bedelini ifade edebilir.
+
+3. Context Map
+-> büyük ve karmaşık sistemlerde farklı bounded context'lerin bağımsız ama birlikte çalışmasını sağlamak için
+kullanılır. DDD'nin temel prensiplerinden biri olan Bounded Context'ler arasındaki sınırları netleştirir ve her
+bounded context'in kendi domain modelini nasıl yönettiğini anlamaya yardımcı olur.
+Bounded contextler birbirinden bağımsız olabilir ancak aralarında iletişim etkileşim olabilir.İlişki türleri
+farklı modeller ve stratejilerle yönetilir
+
+3.1 - Shared Kernel -> İki bounded context, ortak bir domain modelini paylaşır, ancak bu model sadece belirli bir
+kısmı kapsar. Her iki bounded context de bu modeli aynı şekilde kullanmalıdır.
+
+3.2 - Customer-Supplier -> Bir bounded context (Customer), diğer bir bounded context'in (Supplier) sunduğu bir
+hizmete veya bilgiye bağımlıdır. Customer, Supplier’ın sunduğu hizmete güvenir ve Supplier, Customer’ın
+taleplerini karşılayacak şekilde modelini güncelleyebilir.
+
+3.3 - Anticorruption Layer -> Bir bounded context, başka bir bounded context ile etkileşime geçtiğinde,
+iki modelin uyumsuzluğunu çözmek için bir "çevre katmanı" (anticorruption layer) kullanır. Bu katman, iki farklı
+model arasındaki çeviriyi yaparak bounded context'in iç yapısının bozulmasını engeller.

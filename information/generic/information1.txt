@@ -1,0 +1,39 @@
+Clean Architecure nedir -> Yazılım sistemlerinin bakımı kolay değişikliklere açık olmasını hedefler.
+Her bileşenin bağımsız olarak geliştirilmesi değiştirilmesi sistemin sürdürülebilir olmasını sağlar.
+Bu sayede üst seviyedeki modüller alt seviyedeki modüllere bağımlı olmaz ve kod esnekliği sağlanır.
+
+-> clean architecure 4 katmandan oluşur
+
+---------------- Framework & Drivers--------------- En dış
+---------------- Interface Adapter ( Infastructure)-------- 3.
+---------------- Use Cases (Application Business Roles) ------- 2.
+---------------- Domain (Entities) (Enterprise Business Roles) ------ En iç
+
+1- Domain katmanı -> Uygulama mantığından sorumludur. Başka herhangi bir katmana bağımlılık göstermez.
+Entities,use cases vb şeyler buradadır.
+
+1.1 Entities -> örneğin eticarette prodct bir entitiydir.
+1.2 Value Object -> Değeri temsil eden ve sadece değerden oluşan şeylerdir.Örneğin bir tarih aralığı
+para miktarı, kordinatlar.Immutabledir.
+1.3 Aggregates -> birden fazla entitiy veya valu object bir araya gelerek oluşturdupu yapıdır. Tek bir
+birim oalrak haraket eden koleksiyondur.Sadece aggregate root dışarı ile iletişime geçer.Mesela e-ticaret
+uygulamanda Order ve OrderItem var bunların ikisi aggregatedir.Ama istek ile sadece order'a  erişilir
+orderıtema değil order burada aggregate rootdur.
+1.4 Repositories -> entityler üzerinde crud yapmamızı sağlar.Bu arayüzlerin implementasyonu
+infastructure katmanında olur.
+
+2- Application katmanı -> dış dünya ile iletişimin sağlandığı katmandır.bu katmanda istekler alınır işlenir
+uygun yanıtlar oluşturlur.
+
+2.1 Gelen işlemlerin validasyonu
+2.2 Custom Exceptionlar.
+2.3 Servise gelen isteklerin request ve Response modelleri, servisin antıksal işlemleri
+
+3- Infastructure katmanı -> Veri kaynaklarına harici kaynaklara erişim sağlanır.Veritabanı bağlnatıları
+emailelr,harici apilar.Tüm katmanlara erişimi vardır.
+
+----Avanatajları------
+
+1- Katmanlar arası bağımlılık azalır.
+2- test edilebilirlik kolaylaşır
+

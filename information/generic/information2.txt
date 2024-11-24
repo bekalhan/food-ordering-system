@@ -1,0 +1,27 @@
+2- Hexagonal Architecture  (ports & adapters) -> genişletilebilir sürdürülebilir yazılım için
+tasarlanmış bir mimaridir.Amaci sistemi loosely coupled olan ve uygulamanın domain (core application)
+, veritabanına veya UI'ya iletişime geçmesini portla sağlamanaktır.
+
+
+                              ----------------                               |
+ Primary  |    App UI ------| InPo        OuPo  |------Database              |    Secondary
+          |               -|                      |-                         |
+ Driven   |                |        Business         |-----Message Queue     |    Driven
+          |    Console ----|         Logic           |                       |
+ Adapter  |                -| InPo        OuPo  -|                           |    Adapter
+          |                   -|                -|  ------HTTP               |
+          |    Test Script-----  --------------
+
+
+
+1- Business Logic (Domain-Application Core) -> Bu core yapı dış dünyadan izole olması gerekmektedir.
+Çekirdeğin bir UI danmı rest apidenmi test framewrokten çağırıldığı farkı olmaması lazım.
+
+
+2- Portlar application'ın dış dünya bağlantılarıdır.Input port dataları almakla Outport dataları
+iletmekle sorumludur.
+
+
+3- Adapter -> Portların sağladığı arayüzler sayesinde dış dünya ile iletişim kurarlar.iki türü vardır
+primary adaptörler kullanıcıdan veya sistemden gelen istekleri giriş portları üzerinden iş mantığını çağırır.
+secondary adaptörler iş mantığının ihtiyaç duyduğu harici sistemlerle iletişim kurar.

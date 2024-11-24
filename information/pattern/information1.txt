@@ -1,0 +1,7 @@
+Saga pattern?
+->Buradaki fikir uzun süre devam eden bir işlemi sonlarndırmak için acid (atomic,consistency,isolation,durebiliity)
+işlemleri zinciri oluşturmaktır.Amaç dağıtık sistemlerde veri tutarlığı sağlamak
+
+order-payment-restaaurant üçlüsü
+
+order service -> SAGA Container görevi görür olayları başlattığı için.
