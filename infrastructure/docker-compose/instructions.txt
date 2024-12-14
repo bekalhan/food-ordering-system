@@ -1,0 +1,5 @@
+docker-compose -f common.yml -f zookeeper.yml up
+echo ruok | nc localhost 2182 -> check if zookeeper is healthy
+docker-compose -f common.yml -f kafka_cluster.yml up
+docker-compose -f common.yml -f init_kafka.yml up
+then you can reach the kafka clusters localhost:9000

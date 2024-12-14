@@ -5,3 +5,29 @@ işlemleri zinciri oluşturmaktır.Amaç dağıtık sistemlerde veri tutarlığ�
 order-payment-restaaurant üçlüsü
 
 order service -> SAGA Container görevi görür olayları başlattığı için.
+
+->Saga Pattern ile oluşturulan sistemlerde gelen istek ile daha sonraki her adım, bir önceki adımın
+başarılı şekilde tamamlanması sonrasında tetiklenir. Herhangi bir failover durumunda işlemi geri alma
+veya bir düzeltme aksiyonu almayı sağlayan pattern’dir.
+
+Saga türleri
+1- Orchestration-based saga -> Bu yaklaşımda tüm işlemleri yöneten bir Saga orchestrator’u vardır.
+Bu orchestrator subscribe olan tüm consumer’lara ne zaman ne yapacağını ileten bir consumer’dır.
+
+- Order service pending durumunda siparişi oluşturur ve orchestrator'a order_created bilgisini gönderir
+ve orchestrator sipariş oluşturma transactionı başlatır
+
+- Orchestrator execute_payment payment service gönderir ve payment ödeme aldığı bilgiyi geri dönderir
+(Başarılı senoryalar için)
+
+- Daha sonra benzer bir şeyi stock-service ile yapar
+
+- daha sonra order_delıver'i ship service gönderir ve ship-serviceden sipariş kargolandı bilgisini alır
+(başarılı seneryolar için)
+
+her durum için saga üzerinde state tutmak hangi adımda sürecinyanlış yönetildiğini görmeyi koalylaştırır
+
+-> olası failover durumu:
+
+orchestrator fail bilgisine alır daha sorna rolback işlemi başlatır
+
