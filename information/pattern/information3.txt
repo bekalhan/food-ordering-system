@@ -1,0 +1,23 @@
+cqrs -> command query responsibility segregation command ve query işlemlerini biribirnde ayırmaktır.
+Command -> aslında veriyi değiştirme işlemdiir create update delete gibi
+query -> veri okuma get gibi
+
+-> bir uygulama içinde okuma işlemlerinin gerçeklerştiği birçok kısım var ve hepsi kendi içinde komplex sorgular içermektedir.
+cqrs okuma ve yazma işlemlerinin için farklı modellere ayrılmasını amaçlamaktadır.
+
+-> ayrık veritabanı -> örneğin yazma işlemini mysql veritabanı kullanrıken okuma işleminde
+document based bir veritabanı yada elasticsearch veritabını kullanabilirsin.
+
+case -> ben kayıtlarımı postgresql'e yapıyor okuma işini mesela elasticten yapacaksam postgre için
+olulturduğum her kayıdı elastictede oluşturmam lazım data entegrity açısından bunun için aslında
+kafka kullanabiliriz.Oluşturulan her kayıt için event fırlatıp aynı datayı okuma yapacağımdan
+databese'de kayıt edebilirim.
+
+
+case -> Örneğin bir e-ticaret sitesinde bir kullanıcı bir order oluşturdu sonra içine 3 4 tane
+product ekledi sonra birkaç tanesini sildi sonra tekrar ekledi sonra tekrar sildi. Bu her ekleme veya
+silme işleminde aslında bir commanddır. Ama en sonuncu olarak olarak orderın durumu sabittir tğm bu
+çıkarma ekleme işlemi sonrası. Bizim için son durum önemli olabilir ama son duruma gelirken kullanıcın
+hangi aksiyonları yaptığı önemli bir durum olabilir analistler için o yüzden tüm bu aksiyonları
+event sourcing ile (axon framework) axondan geçiriyoruz. Axon içinde bir db tutuyor ve tüm bu aksiyonları
+kaydediyor.Daha sonra axondan bir event fırlatarak query ile çekeceğimiz yere gidebiliriz.
