@@ -1,0 +1,25 @@
+Outbox pattern -> Mikroservislerde veri tutarlığını sağlamak için kullanılan bir tasarım desenidir.
+Bu desen işlemleri birden fazla mikroservis arasında güvenli olarak dağıtmak için outbox tablosunu kullanır.
+Ana servis bir işlem gerçekleştiğinde bu işlemle ilgili eventler outbox tablosuna kaydedilir.
+
+
+1- Veritabanı işlemi -> Ana microservis bir veritabanı işlemi gerçekleştirdiğinde (örneğin kullanıcı oluşumu)
+bu işlemle ilgili bilgileri outbox tablosuna kydeder.
+
+2- Outbox tablosuna yazma -> İşlem tamamlandığında işlemin başarılı olup olmadığı kontrol edilir.
+başarılı işlemde işlem outbox tablosna yazılır.
+
+3- Mesaj kuyruğuna gönderme -> Başka bir servis utbox tablosundaki verileri kontrol eder. Başarılı bir
+işlemde ilgili veriler outbox tablosuna yazılır.
+
+4-Tüketim
+
+Avantajları
+
+hata dayanıklığı ->  Eğer fbir microservis hata alırsa outbox tablosu sayesinde veri kaybı yaşanmaz
+veriler kuyruktan geri alınabilir.
+
+
+4 tane olay ard arda tetikleniyorsa 3. hata meydana geldiyse saga ile rollback yapılır
+outbox sadece saga ile oluşturulan her oalyı outbox tblosunda tutar.Olayları doğru bir sırayla eksiksiz
+bir şekilde tutar.
